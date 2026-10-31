@@ -1,4 +1,4 @@
-// Setările device-ului și numele topic-urilor MQTT.
+/*// Setările device-ului și numele topic-urilor MQTT.
 //
 // Brokerul este partajat de toți studenții. Înlocuiți STUDENT cu numele vostru
 // (fără spații sau diacritice), identic cu Config.STUDENT din business-service.
@@ -41,6 +41,30 @@ const uint32_t MIN_INTERARRIVAL_MS = 5000;
 //
 //   char topic[80];
 //   make_topic(topic, sizeof(topic), "telemetry");
+inline void make_topic(char* buf, size_t size, const char* kind) {
+    snprintf(buf, size, "ssatr/%s/devices/%s/%s", STUDENT, DEVICE_ID, kind);
+}
+*/
+#pragma once
+
+#include <Arduino.h>
+
+const char* const WIFI_SSID = "Wokwi-GUEST";
+const char* const WIFI_PASSWORD = "";
+
+const char* const BROKER_URI = "mqtt://control.aut.utcluj.ro:11188";
+const char* const NTP_SERVER = "pool.ntp.org";
+
+// Păstrăm temporar valoarea din fișierul tău.
+// O vom alinia cu Config.STUDENT din business-service înainte de testul complet.
+const char* const STUDENT = "costin-denisa";
+
+extern const char* const DEVICE_ID;
+
+const uint32_t PERIOD_MS_INITIAL = 2000;
+const float THRESHOLD_INITIAL = 45.0f;
+const uint32_t MIN_INTERARRIVAL_MS = 5000;
+
 inline void make_topic(char* buf, size_t size, const char* kind) {
     snprintf(buf, size, "ssatr/%s/devices/%s/%s", STUDENT, DEVICE_ID, kind);
 }

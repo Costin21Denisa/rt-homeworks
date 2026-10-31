@@ -1,4 +1,4 @@
-// Conexiunea plăcii: Wi-Fi, ora exactă (SNTP) și clientul MQTT.
+/*// Conexiunea plăcii: Wi-Fi, ora exactă (SNTP) și clientul MQTT.
 // Gata implementată (connection.cpp), nu trebuie modificată: este
 // echivalentul clasei MqttConnection din tema 01.
 //
@@ -51,4 +51,17 @@ bool mqtt_publish(const char* kind, const char* text);
 // Rulează pe taskul clientului MQTT, nu pe taskurile voastre: doar puneți
 // comanda în coadă, nu o executați aici. text este valid doar în timpul
 // apelului, deci se copiază (xQueueSend copiază elementul cozii).
+void command_received(const char* text);
+*/
+#pragma once
+
+#include <Arduino.h>
+
+const size_t COMMAND_MAX_LEN = 64;
+
+void wifi_connect(void);
+void time_sync(void);
+int64_t epoch_ms(void);
+void mqtt_start(void);
+bool mqtt_publish(const char* kind, const char* text);
 void command_received(const char* text);
